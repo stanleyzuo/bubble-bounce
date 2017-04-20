@@ -9,7 +9,9 @@ function mouseDragged() {
 }
 
 function mousePressed() {
-  bubbles.splice(0, 10);
+  for (var i = 0; i < bubbles.length; i++) {
+    bubbles[i].clicked();
+  }
 }
 
 function draw() {
@@ -17,7 +19,10 @@ function draw() {
   for (var i = 0; i < bubbles.length; i++) {
     bubbles[i].move();
     bubbles[i].display();
+    if (bubbles[i].clicked()) {
+    bubbles.splice(i, 1);
   }
+ }
 }
 
 function Bubble(x, y, sz, sp) {
@@ -35,8 +40,6 @@ function Bubble(x, y, sz, sp) {
   }
 
   this.move = function() {
-    // this.x = this.x + random(-1, 1);
-    // this.y = this.y + random(-1, 1);
     this.x = this.x + this.speedx;
     this.y = this.y + this.speedy;
     if ((this.x >= width) || (this.x <= 0)) {
@@ -45,5 +48,14 @@ function Bubble(x, y, sz, sp) {
     if ((this.y >= height) || (this.y <= 0)) {
       this.speedy = -this.speedy;
   }
-}
+ }
+ 
+ this.clicked = function() {
+    var d = dist(mouseX, mouseY, this.x, this.y);
+    if (d < this.sz/2 && mouseIsPressed){ 
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
