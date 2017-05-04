@@ -2,6 +2,13 @@ var bubbles = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  for (var i = 0; i < 10; i++) {
+    var x = random(width);
+    var y = random(height);
+    var sz = random(25,100);
+    var sp = random(1,4);
+    bubbles.push(new Bubble(x, y, sz, sp));
+  }
 }
 
 function mouseDragged() {
