@@ -5,7 +5,7 @@ function setup() {
   for (var i = 0; i < 10; i++) {
     var x = random(width);
     var y = random(height);
-    var sz = random(25,100);
+    var sz = random(13,50);
     var sp = random(1,4);
     bubbles.push(new Bubble(x, y, sz, sp));
   }
